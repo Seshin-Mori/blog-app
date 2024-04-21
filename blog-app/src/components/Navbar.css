@@ -1,10 +1,18 @@
 nav {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
-  height: 50px;
+  height: auto;
   background-color: brown;
-  gap: 45px;
+  gap: 15px;
+  padding: 20px;
+}
+
+nav h1 {
+  order: -1;
+  color: white;
+  margin-bottom: 20px; /* h1の下部にマージンを追加 */
 }
 
 nav a {
@@ -18,4 +26,21 @@ nav a:hover {
 
 nav a svg {
   margin-right: 5px;
+}
+
+/* リンクを横並びにするためのdiv */
+nav div {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* レスポンシブデザインのためのメディアクエリ */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+  }
+  nav div {
+    flex-direction: column;
+  }
 }
