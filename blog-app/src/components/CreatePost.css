@@ -56,8 +56,16 @@
   }
 
   .postContainer {
-    width: 90%;
-    height: auto;
+    width: 90%; /* コンテンツの幅を画面の90%に調整 */
+    height: auto; /* 高さをコンテンツに合わせて自動調整 */
+    margin: 20px auto; /* 上下の余白を20pxにし、左右のマージンを自動調整して中央揃え */
+    padding: 15px; /* 内側の余白を15pxに設定 */
+    box-sizing: border-box; /* paddingとborderがwidthに含まれるようにする */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 子要素を上端に揃える */
+    align-items: center; /* 子要素を中央に揃える */
+    overflow-y: auto; /* 必要に応じて縦方向にスクロール可能に */
   }
   .postContainer textarea {
     height: auto;

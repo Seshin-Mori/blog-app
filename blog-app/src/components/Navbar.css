@@ -1,23 +1,31 @@
 nav {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  height: auto;
+  justify-content: flex-start;
+  align-items: stretch; /* 子要素が親要素の幅全体を使用するように設定 */
+  width: 100%; /* ナビゲーションバーの幅を100%に設定 */
   background-color: brown;
-  gap: 15px;
   padding: 20px;
 }
 
 nav h1 {
-  order: -1;
+  align-self: center; /* タイトルを中央揃えに */
   color: white;
-  margin-bottom: 20px; /* h1の下部にマージンを追加 */
+  margin-bottom: 20px;
+}
+
+nav div {
+  width: 100%; /* リンクを横並びのコンテナの幅を100%に設定 */
+  display: flex;
+  justify-content: space-evenly; /* リンク間の隙間を均等に分布 */
+  gap: 20px;
 }
 
 nav a {
   text-decoration: none;
   color: white;
+  flex-grow: 1; /* 各リンクが均等な幅を持つように設定 */
+  text-align: center; /* テキストをリンク内で中央揃えに */
 }
 
 nav a:hover {
@@ -28,19 +36,13 @@ nav a svg {
   margin-right: 5px;
 }
 
-/* リンクを横並びにするためのdiv */
-nav div {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
 /* レスポンシブデザインのためのメディアクエリ */
 @media (max-width: 600px) {
-  nav {
-    flex-direction: column;
-  }
   nav div {
     flex-direction: column;
+  }
+
+  nav a {
+    margin-bottom: 10px; /* リンク間の縦の隙間を設定 */
   }
 }
