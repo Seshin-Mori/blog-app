@@ -28,3 +28,5 @@ firebase-debug.log
 firestore.indexes.json
 firestore.rules
 .firebaserc
+firebase-hosting-merge.yml
+firebase-hositing-pull-request.yml
