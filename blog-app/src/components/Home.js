@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import "./Home.css";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
 const Home = () => {
   const [postList, setPostList] = useState([]);
@@ -15,6 +15,13 @@ const Home = () => {
     };
     getPosts();
   }, []);
+
+  // 投稿を削除する関数
+  const handleDelete = async (id) => {
+    await deleteDoc(doc(db, "posts", id));
+    // 削除後の新しい投稿リストを設定し、リロードせずにUIを更新
+    setPostList((prevPosts) => prevPosts.filter((post) => post.id !== id));
+  };
 
   // 現在のページに表示する投稿を計算
   const indexOfLastPost = currentPage * postsPerPage;
@@ -36,7 +43,12 @@ const Home = () => {
             <h3>
               書いた人：{post.author ? post.author.username : "不明なユーザー"}
             </h3>
-            <button>削除</button>
+            {
+              // ログインユーザーが投稿した記事のみ削除ボタンを表示
+              post.author.id === auth.currentUser?.uid && (
+                <button onClick={() => handleDelete(post.id)}>削除</button>
+              )
+            }
           </div>
         </div>
       ))}
